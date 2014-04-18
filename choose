@@ -164,8 +164,8 @@ def do_it(auswahl):
     index = select_entry(auswahl,
                          header_text=u'Navigate by pressing ↑ and ↓, select by pressing Enter')
 
-    # print chosen string
-    print(orig_auswahl[index])
+    # return chosen string
+    return orig_auswahl[index]
 
 
 if __name__=="__main__":
@@ -179,7 +179,7 @@ if __name__=="__main__":
     sys.__stdin__ = sys.stdin = open('/dev/tty')
     os.dup2(sys.stdin.fileno(), 0)
 
-    do_it(auswahl)
+    choice = do_it(auswahl)
 
     #restore old stdout
     sys.stdout.flush()
@@ -190,3 +190,5 @@ if __name__=="__main__":
     sys.__stdout__ = sys.stdout = old_out
     sys.__stdin__ = sys.stdin = old_in
     sys.__stderr__ = sys.stderr = old_err
+
+    print choice
